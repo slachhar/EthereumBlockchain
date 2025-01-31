@@ -8,8 +8,11 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const providerUrl = "http://127.0.0.1:7545";
-const web3 = new Web3(providerUrl);
+//const providerUrl = "http://127.0.0.1:8545";
+//const providerUrl = "http://0.0.0.0:7545";
+//const web3 = new Web3(providerUrl);
+const web3 = new Web3(process.env.GANACHE_URL || 'http://127.0.0.1:8545');  // Change 'localhost' to the correct address if in Docker.
+
 
 // Load ABI & Contract Address
 const contractJsonPath = path.resolve(__dirname, 'build', 'BlockStorage.json');
@@ -25,7 +28,7 @@ const interact = async () => {
         console.log("Using account:", accounts[0]);
 
         // Store data in contract
-        const tx = await contract.methods.storeData(42).send({ from: accounts[0], gas: 3000000 });
+        const tx = await contract.methods.storeData(50).send({ from: accounts[0], gas: 3000000 });
         console.log("✅ Transaction successful:", tx.transactionHash);
 
         // Retrieve stored data

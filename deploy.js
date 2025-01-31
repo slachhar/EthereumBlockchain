@@ -7,9 +7,14 @@ import { dirname } from 'path';
 // Resolve __dirname for ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+await new Promise(resolve => setTimeout(resolve, 5000));
 
 // Connect to Ganache (Docker)
-const web3 = new Web3('http://127.0.0.1:7545');
+//const web3 = new Web3('http://127.0.0.1:8545');
+//const web3 = new Web3('http://0.0.0.0:8545');
+//const web3 = new Web3('http://ganache:8545');
+const web3 = new Web3(process.env.GANACHE_URL || 'http://127.0.0.1:8545');
+
 
 // Load compiled contract
 const contractJsonPath = path.resolve(__dirname, 'build', 'BlockStorage.json');
