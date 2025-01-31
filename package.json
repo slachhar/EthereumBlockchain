@@ -1,0 +1,20 @@
+{
+  "name": "blockchaincontainer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^11.3.0",
+    "path": "^0.12.7",
+    "solc": "^0.8.28",
+    "url": "^0.11.4",
+    "web3": "^4.16.0"
+  }
+}
