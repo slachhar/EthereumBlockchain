@@ -1,26 +1,30 @@
-version: '3.7'
-
+version: "3"
 services:
   ganache:
     image: trufflesuite/ganache:latest
     container_name: ganache
     ports:
-      - "8545:8545"
+      - "8545:8545"   # Expose Ganache's RPC port
+    volumes:
+      - ganache_data:/root/.ganache
     environment:
-      - NETWORK_ID=5777
+      - GANACHE_MNEMONIC='candy maple cake sugar pudding cream honey rich smooth crumble sweet treat'
+      - GANACHE_NETWORK_ID=5777
     networks:
-      - blockchain-network
+      - ganache_network
 
   app:
-    build: .
-    container_name: blockchain-app # this should same as app build name
-    environment:
-      GANACHE_URL: http://ganache:8545
+    build: .  # This will point to the directory where you have your smart contract code and Node.js deployment code
+    container_name: smart-contract-deployer
     depends_on:
       - ganache
-    networks:
-      - blockchain-network
+    environment:
+      - RPC_URL=http://ganache:8545  # Use the Ganache container's internal hostname
+    command: ["node","deploy.mjs"]
+
+volumes:
+  ganache_data:
 
 networks:
-  blockchain-network:
+  ganache_network:
     driver: bridge

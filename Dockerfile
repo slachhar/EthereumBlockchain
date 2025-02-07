@@ -1,23 +1,20 @@
-# Use an official Node.js runtime as the base image
-FROM node:16-alpine
+# Use official Node.js image as base
+FROM node:16
 
-# Set the working directory
-WORKDIR /app
+# Create and set working directory
+#WORKDIR /app
 
-# Copy the package.json and package-lock.json files
+# Copy package.json and package-lock.json for installing dependencies
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+#RUN npm install
 
-# Copy the rest of the application files
+# Copy the rest of the application code
 COPY . .
 
-# Expose port for the app (optional)
-EXPOSE 3000
+# Set environment variables
+ENV RPC_URL=http://10.71.39.50:8545
 
-# Set environment variables if needed (for Ganache URL or others)
-ENV GANACHE_URL=http://ganache:8545
-
-# Run the deployment script
-CMD ["node", "deploy.js"]
+# Set default command to run the deploy script
+CMD ["node", "deploy.mjs"]

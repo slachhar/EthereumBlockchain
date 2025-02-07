@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  ganache:
+    image: trufflesuite/ganache:latest
+    container_name: ganache
+    ports:
+      - "8545:8545"
+    environment:
+      - NETWORK_ID=5777
+    networks:
+      - blockchain-network
+
+  app:
+    build: .
+    container_name: blockchain-app # this should same as app build name
+    environment:
+      GANACHE_URL: http://ganache:8545
+    depends_on:
+      - ganache
+    networks:
+      - blockchain-network
+
+networks:
+  blockchain-network:
+    driver: bridge

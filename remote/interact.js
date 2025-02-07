@@ -15,11 +15,11 @@ const web3 = new Web3(process.env.GANACHE_URL || 'http://10.71.39.50:8545');  //
 
 
 // Load ABI & Contract Address
-const contractJsonPath = path.resolve(__dirname, 'build', 'BlockStorage.json');
+const contractJsonPath = path.resolve(__dirname, '../build', 'BlockStorage.json');
 const contractJson = JSON.parse(fs.readFileSync(contractJsonPath, 'utf8'));
 const abi = contractJson.abi;
 
-const contractAddress = fs.readFileSync(path.resolve(__dirname, 'contract-address.txt'), 'utf8').trim();
+const contractAddress = fs.readFileSync(path.resolve(__dirname, '../contract-address.txt'), 'utf8').trim();
 const contract = new web3.eth.Contract(abi, contractAddress);
 
 const interact = async () => {
