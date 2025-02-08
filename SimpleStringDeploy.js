@@ -7,8 +7,8 @@ dotenv.config();
 const provider = new Web3.providers.HttpProvider(process.env.GANACHE_URL);
 const web3 = new Web3(provider);
 
-const abi = JSON.parse(fs.readFileSync("./build/SimpleStringContract.abi", "utf8"));
-const bytecode = "0x" + fs.readFileSync("./build/StringStringContract.bin", "utf8");
+const abi = JSON.parse(fs.readFileSync("./build/StringStorage.abi", "utf8"));
+const bytecode = "0x" + fs.readFileSync("./build/StringStorage.bin", "utf8");
 
 const deployContract = async () => {
   try {

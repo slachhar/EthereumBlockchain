@@ -28,3 +28,9 @@ docker-compose up
 Docker Compose Needs to Run on the Host VM: The docker-compose.yml file defines how Docker containers should be built and run. This file must be present on the host machine (in this case, the VM). If you want to run Ganache as a Docker container, you will define the service in this file.
 
 You Can't Run docker-compose Remotely: If you're working from your local machine, you won't be able to directly use docker-compose commands for containers running on the VM unless the VM is set up to accept Docker commands remotely. However, typically, Docker and Docker Compose commands should be executed directly on the VM where Docker is running.
+
+
+running solc in docker image
+- docker run ethereum/solc:stable --help  //install docker container for solc
+- docker run --rm -v /home/shefali/EthereumBlockchain:/workspace ethereum/solc:stable --optimize --bin --abi --overwrite -o /workspace/build /workspace/contracts/StringStorage.sol // put contract in solc container and compile it
+- the compiled files will go in build folder

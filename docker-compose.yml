@@ -10,8 +10,6 @@ services:
     environment:
       - GANACHE_MNEMONIC='candy maple cake sugar pudding cream honey rich smooth crumble sweet treat'
       - GANACHE_NETWORK_ID=5777
-    networks:
-      - ganache_network
 
   app:
     build: .  # This will point to the directory where you have your smart contract code and Node.js deployment code
@@ -20,11 +18,7 @@ services:
       - ganache
     environment:
       - RPC_URL=http://ganache:8545  # Use the Ganache container's internal hostname
-    command: ["node","deploy.mjs"]
+    command: ["node", "deployContractStoreString"]
 
 volumes:
   ganache_data:
-
-networks:
-  ganache_network:
-    driver: bridge

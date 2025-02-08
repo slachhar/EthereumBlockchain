@@ -1,12 +1,12 @@
-import { ethers } from "hardhat";
+import { ethers } from "ethers";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 async function main() {
-    const contractAddress = "0x06a85cBF109f16386Cb9eFbeE4ce87547BB8fbD6";
+    const contractAddress = "0x32fd0ba6aedF75C114945CF58Ea88e37C6112D3a";
     const StringStorage = await ethers.getContractFactory("StringStorage");
-    const provider = new ethers.JsonRpcProvider("http://127.0.0.1:8545");
+    const provider = new ethers.JsonRpcProvider("http://10.71.39.50:8545");
     const signer = provider.getSigner(0);
     const contract = new ethers.Contract(contractAddress, StringStorage.interface, signer);
 
